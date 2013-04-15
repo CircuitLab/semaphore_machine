@@ -6,7 +6,7 @@ Servo right;
 Servo left;
 
 int pos = 0;
-
+char serial_read;
 
 char sentence[] = {'ogawa','hello'};
 
@@ -37,7 +37,7 @@ void loop() {
 }
 
 
-void transchar(char serial_read){
+void transchar(serial_read){
   
   switch (serial_read){
     case 1:
