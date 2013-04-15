@@ -1,4 +1,4 @@
-
+#include <Time.h>
 #include <Servo.h>
 
 Servo right;
@@ -26,16 +26,19 @@ void loop() {
  if(Serial.available() > 0){   
 //    char alp = sentence[0];
     char monitor = Serial.read();
- }    
+ }
+ 
+ if(second()%20 == 0){
     message();
-   
+ }
+ 
 }
 
 void message(){
   
    for(int i=0; i < sizeof(ogawa); ++i){
      transchar(ogawa[i]);
-     delay(1000);
+     delay(500);
    }
   
 }
