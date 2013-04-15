@@ -29,7 +29,7 @@ void loop() {
 //    char alp = sentence[0];
     char monitor = Serial.read();
     
-    transchar(monitor);
+    transchar(1);
     
     delay(1000);
   
@@ -40,7 +40,7 @@ void loop() {
 void transchar(char serial_read){
   
   switch (serial_read){
-    case 'a':
+    case 1:
       right.write(180);
       left.write(45);
     break;
