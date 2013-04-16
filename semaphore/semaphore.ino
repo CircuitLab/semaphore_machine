@@ -6,7 +6,7 @@ Servo left;
 char serial_read;
 
 int sensorVal = 0;
-int analogPin = 0;
+int analogPin = 5;
 
 //time設定で言う言葉
 char set0[] = {
@@ -55,18 +55,18 @@ void loop() {
   }
 
   if(second()%10 == 0){
-    message();
+    timeMessage();
   }
+  
+  sensorMessage();
 
 }
 
-void message(){
+//time
+
+void timeMessage(){
 
   timeMessageNumber = random(0,7);
-  sensorMessageNumber = random(8,10);
-  //  Serial.println(timeMessageNumber);
-
-  //time
 
   if(timeMessageNumber == 0){
     for(int i=0; i < sizeof(set0); ++i){
@@ -116,14 +116,17 @@ void message(){
       delay(500);
     }
   }
+
+}
+
+//Sensor
+
+void sensorMessage(){
   
-  //sensor
-
+  sensorMessageNumber = random(8,10);
   sensorVal = analogRead(analogPin);
-  if(sensorVal < 100){
-
-
-    Serial.println(sensorVal);
+  Serial.println(sensorVal);
+  if(sensorVal > 100){
 
     if(sensorMessageNumber == 8){
       for(int i=0; i < sizeof(set8); ++i){
@@ -145,7 +148,8 @@ void message(){
     }
 
   }
-
+  
+  delay(300);
 }
 
 
