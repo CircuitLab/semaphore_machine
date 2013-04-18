@@ -6,33 +6,29 @@ Servo left;
 char serial_read;
 
 int sensorVal = 0;
-int analogPin = 5;
+int analogPin = 0;
 
 //time設定で言う言葉
 char set0[] = {
-  'm','o','r','n','i','n','g','!'};
+  'k','t','k','r'};
 char set1[] = {
-  'h','e','l','l','o','!'};
+  's','l','e','e','p'};
 char set2[] = {
-  's','e','e','y','o','u','!'};
+  'f','u','t','u','r','e'};
 char set3[] = {
-  'm','o','r','n','i','n','g','!'};
+  's','u','t','e','m','a'};
 char set4[] = {
-  'h','e','l','l','o','!'};
+  'g','k','b','r'};
 char set5[] = {
-  's','e','e','y','o','u','!'};
-char set6[] = {
-  'm','o','r','n','i','n','g','!'};
-char set7[] = {
-  'h','e','l','l','o','!'};
+  'g','k','b','r'};
 
 //センサーに反応していう言葉
+char set6[] = {
+  'b','y','e','b','y','e'};
+char set7[] = {
+  't','y'};
 char set8[] = {
-  's','e','e','y','o','u','!'};
-char set9[] = {
-  'h','e','y','!'};
-char set10[] = {
-  'w','a','i','t','!'};
+  'w','a','i','t'};
 
 int timeMessageNumber;
 int sensorMessageNumber;
@@ -54,9 +50,9 @@ void loop() {
     char monitor = Serial.read();
   }
 
-  if(second()%10 == 0){
-    timeMessage();
-  }
+//  if(second()%10 == 0){
+//    timeMessage();
+//  }
   
   sensorMessage();
 
@@ -66,7 +62,7 @@ void loop() {
 
 void timeMessage(){
 
-  timeMessageNumber = random(0,7);
+  timeMessageNumber = random(0,5);
 
   if(timeMessageNumber == 0){
     for(int i=0; i < sizeof(set0); ++i){
@@ -104,18 +100,6 @@ void timeMessage(){
       delay(500);
     }
   }
-  else if(timeMessageNumber == 6){
-    for(int i=0; i < sizeof(set6); ++i){
-      transchar(set6[i]);
-      delay(500);
-    }
-  }
-  else if(timeMessageNumber == 7){
-    for(int i=0; i < sizeof(set7); ++i){
-      transchar(set7[i]);
-      delay(500);
-    }
-  }
 
 }
 
@@ -123,24 +107,24 @@ void timeMessage(){
 
 void sensorMessage(){
   
-  sensorMessageNumber = random(8,10);
+  sensorMessageNumber = random(6,8);
   sensorVal = analogRead(analogPin);
   Serial.println(sensorVal);
-  if(sensorVal > 100){
+  if(sensorVal > 300){
 
-    if(sensorMessageNumber == 8){
+    if(sensorMessageNumber == 6){
       for(int i=0; i < sizeof(set8); ++i){
         transchar(set8[i]);
         delay(500);
       }
     }
-    else if(sensorMessageNumber == 9){
+    else if(sensorMessageNumber == 7){
       for(int i=0; i < sizeof(set9); ++i){
         transchar(set9[i]);
         delay(500);
       }
     }
-    else if(sensorMessageNumber == 10){
+    else if(sensorMessageNumber == 8){
       for(int i=0; i < sizeof(set10); ++i){
         transchar(set10[i]);
         delay(500);
@@ -296,8 +280,8 @@ void transchar(char serial_read){
     right.write(120);
     left.write(45);
     delay(100);
-    right.write(20);
-    left.write(145);
+    right.write(180);
+    left.write(0);
     break;
   }
 
