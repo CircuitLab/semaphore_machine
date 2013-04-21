@@ -10,25 +10,25 @@ int analogPin = 0;
 
 //time設定で言う言葉
 char set0[] = {
-  'k','t','k','r'};
+  'k','t','k','r','!'};
 char set1[] = {
-  's','l','e','e','p'};
+  's','l','e','e','p','!'};
 char set2[] = {
-  'f','u','t','u','r','e'};
+  'f','u','t','u','r','e','!'};
 char set3[] = {
-  's','u','t','e','m','a'};
+  's','u','t','e','m','a','!'};
 char set4[] = {
-  'g','k','b','r'};
+  'g','k','b','r','!'};
 char set5[] = {
-  'g','k','b','r'};
+  'g','k','b','r','!'};
 
 //センサーに反応していう言葉
 char set6[] = {
-  'b','y','e','b','y','e'};
+  'b','y','e','b','y','e','!'};
 char set7[] = {
-  't','y'};
+  't','y','!'};
 char set8[] = {
-  'w','a','i','t'};
+  'w','a','i','t','!'};
 
 int timeMessageNumber;
 int sensorMessageNumber;
@@ -40,6 +40,9 @@ void setup() {
   left.attach( 6 );
 
   Serial.begin(9600);
+  
+//  right.write(10);
+//  left.write(165);
 
 }
 
@@ -50,7 +53,7 @@ void loop() {
     char monitor = Serial.read();
   }
 
-//  if(second()%10 == 0){
+//  if(minute()%15 == 0){
 //    timeMessage();
 //  }
   
@@ -110,23 +113,23 @@ void sensorMessage(){
   sensorMessageNumber = random(6,8);
   sensorVal = analogRead(analogPin);
   Serial.println(sensorVal);
-  if(sensorVal > 300){
+  if(sensorVal > 100){
 
     if(sensorMessageNumber == 6){
-      for(int i=0; i < sizeof(set8); ++i){
-        transchar(set8[i]);
+      for(int i=0; i < sizeof(set6); ++i){
+        transchar(set6[i]);
         delay(500);
       }
     }
     else if(sensorMessageNumber == 7){
-      for(int i=0; i < sizeof(set9); ++i){
-        transchar(set9[i]);
+      for(int i=0; i < sizeof(set7); ++i){
+        transchar(set7[i]);
         delay(500);
       }
     }
     else if(sensorMessageNumber == 8){
-      for(int i=0; i < sizeof(set10); ++i){
-        transchar(set10[i]);
+      for(int i=0; i < sizeof(set8); ++i){
+        transchar(set8[i]);
         delay(500);
       }
     }
@@ -141,57 +144,57 @@ void transchar(char serial_read){
 
   switch (serial_read){
   case 'a':
-    right.write(180);
+    right.write(165);
     left.write(45);
     break;
 
   case 'b':
-    right.write(180);
+    right.write(165);
     left.write(65);
     break;
 
   case 'c':
-    right.write(180);
+    right.write(165);
     left.write(145);
     break;
 
   case 'd':
-    right.write(180);
-    left.write(180);
+    right.write(165);
+    left.write(165);
     break;
 
   case 'e':
     right.write(45);
-    left.write(0);
+    left.write(10);
     break;
 
   case 'f':
     right.write(90);
-    left.write(0);
+    left.write(10);
     break;
 
   case 'g':
     right.write(145);
-    left.write(0);
+    left.write(10);
     break;
 
   case 'h':
-    right.write(180);
-    left.write(0);
+    right.write(165);
+    left.write(10);
     break;
 
   case 'i':
-    right.write(180);
-    left.write(0);
+    right.write(165);
+    left.write(10);
     break;
 
   case 'j':
     right.write(90);
-    left.write(180);
+    left.write(165);
     break;
 
   case 'k':
-    right.write(0);
+    right.write(10);
     left.write(45);
     break;
 
@@ -211,12 +214,12 @@ void transchar(char serial_read){
     break;
 
   case 'o':
-    right.write(180);
-    left.write(0);
+    right.write(165);
+    left.write(10);
     break;
 
   case 'p':
-    right.write(0);
+    right.write(10);
     left.write(90);
     break;
 
@@ -236,7 +239,7 @@ void transchar(char serial_read){
     break;
 
   case 't':
-    right.write(0);
+    right.write(10);
     left.write(145);
     break;
 
@@ -247,17 +250,17 @@ void transchar(char serial_read){
 
   case 'v':
     right.write(145);
-    left.write(180);
+    left.write(165);
     break;
 
   case 'w':
-    right.write(180);
-    left.write(0);
+    right.write(165);
+    left.write(10);
     break;
 
   case 'x':
-    right.write(180);
-    left.write(0);
+    right.write(165);
+    left.write(10);
     break;
 
   case 'y':
@@ -266,22 +269,14 @@ void transchar(char serial_read){
     break;
 
   case 'z':
-    right.write(180);
-    left.write(0);
+    right.write(165);
+    left.write(10);
     break;
 
   default:
-    right.write(120);
-    left.write(45);
-    delay(100);
-    right.write(20);
-    left.write(145);
-    delay(100);
-    right.write(120);
-    left.write(45);
-    delay(100);
-    right.write(180);
-    left.write(0);
+ 
+    right.write(165);
+    left.write(10);
     break;
   }
 
